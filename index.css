@@ -1,0 +1,163 @@
+@import "tailwindcss";
+
+/* Custom Theme Configuration for Tailwind v4 */
+@theme {
+    /* Colors */
+    --color-primary: #d15e5e;
+    --color-primary-fav: #d15e5e;
+    --color-primary-intro: #bf4b4b;
+    --color-primary-intro-dark: #9e3838;
+    --color-primary-auth: #D65A5A;
+    --color-primary-auth-dark: #B04242;
+    --color-primary-decks: #d65d5d;
+    --color-primary-settings: #d65a5a;
+    --color-primary-light: #fceaea;
+
+    --color-paper: #fdfbf7;
+    --color-paper-intro: #f4f1ea;
+    --color-paper-dark: #f0ede6;
+    --color-paper-texture: #f4f1ea;
+
+    --color-ink: #2d2d2d;
+    --color-ink-light: #6b6b6b;
+    --color-ink-intro: #2d2a26;
+
+    --color-subtle: #8b8680;
+    --color-accent: #d95c5c;
+
+    --color-background-light: #F7F5F2;
+    --color-background-dark: #1C1917;
+    --color-background-paper: #fdfbf7;
+    --color-background-off: #f4f1ea;
+
+    --color-card-light: #FFFFFF;
+    --color-card-dark: #292524;
+
+    --color-text-secondary: #6B7280;
+    --color-text-secondary-dark: #9CA3AF;
+    --color-text-main: #2d2a2a;
+    --color-text-muted: #8a8585;
+
+    --color-border-subtle: #e5e5e0;
+    --color-surface-card: #ffffff;
+    --color-surface-paper: #ffffff;
+
+    /* Font Families */
+    --font-display: "Dancing Script", cursive;
+    --font-serif: "Noto Serif", serif;
+    --font-sans: "Noto Sans", sans-serif;
+    --font-sanskrit: "Noto Sans", sans-serif;
+    --font-dancing: "Dancing Script", cursive;
+    --font-noto-serif: "Noto Serif", serif;
+    --font-noto-sans: "Noto Sans", sans-serif;
+    --font-playfair: "Playfair Display", serif;
+    --font-lato: "Lato", sans-serif;
+    --font-cormorant: "Cormorant Garamond", serif;
+    --font-lexend: "Lexend", sans-serif;
+    --font-body: "Noto Sans", sans-serif;
+
+    /* Box Shadows */
+    --shadow-card: 0 2px 8px -2px rgba(0, 0, 0, 0.1), 0 1px 3px -1px rgba(0, 0, 0, 0.05);
+    --shadow-card-hover: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    --shadow-paper: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+    --shadow-float: 0 20px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.01);
+}
+
+/* Custom classes from provided HTML modules */
+
+/* Favorites Texture */
+.bg-texture-fav {
+    background-color: #fdfbf7;
+    background-image: url(https://lh3.googleusercontent.com/aida-public/AB6AXuAPqDPvh9P11YwkotVhpwQzbyVuLxnPcAHJ3Puxy8Yegjo1NDokknzG4uwTqmQOJTfAlHC7etOyLbKzf5wBEUAKge_LwaNEW3NHVwWkQylj5QoCvT3ci4mscGqClmXeGC5FpyhctB2AJc83ypbldAO7SBC9zgVZxvcETSU16CNCwja-Yki4brlottVZr905f4S3yKw_-DBnbvKcYd-mnBcOPVMfIyQXuNgSHXggHc_OUHiFnmDtrV6jWf3LIoaTAiK8FRvxpjNCAn8);
+}
+
+.card-texture-fav {
+    background-image: url(https://lh3.googleusercontent.com/aida-public/AB6AXuDVFvLaoAVBXgfNdXV6sEdMS4EdBCjD03VcIPjD9gVx0ECDNYHeg1QIVMQflo4atHt5-rO5fWhYY43MfUPTYM7EOxVYVzjaC-ILZl3hwD130pREiyyZdPpD18veRR1_sZ0YOMyaJSSjyf9jyohv4m8dMhKS6f0aOe4vDfJFPTzzEwmM5KgirXMKnSsxjavudjmwS_u5NaQyojzbRVmIskAqnr5kxklh4ldq-oYfzLLaLIKobwbw4aSB0EOKxIvCsiF8JFEK4FL3GlI);
+    background-blend-mode: multiply;
+}
+
+/* Common */
+.no-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+
+.no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.material-symbols-outlined {
+    font-variation-settings: "FILL" 0, "wght" 300, "GRAD" 0, "opsz" 24;
+}
+
+.material-symbols-outlined.filled {
+    font-variation-settings: "FILL" 1, "wght" 300, "GRAD" 0, "opsz" 24;
+}
+
+/* Flashcard */
+.bg-texture-flashcard {
+    background-color: #f0ede6;
+    background-image: url(https://lh3.googleusercontent.com/aida-public/AB6AXuB0yAAjgX_hByYK8pOq3Y9j4Pt8YQHu-KmLvM9XxTPS0x1vB1gzi7VjgUHbQpXNvz3oA5LLxMacBTWtSOz-FNz9yNmC_VPOlixjRQ4BTZ2-rnSj_zJjJZa2diLxpItMhiZn6NUeYwrFf7gsS-uVvKNuwQ7MycHNCFY4cK5aXU-QVqNkRX_jm72IclCEyK9BeYrKPBCM6RfTk23HV-_8iPULPUPUMbtuSaAYrqXV83Q9vcRRExEwOPzbilG5AzQzaPC2qMzxTCQkfA8);
+}
+
+.paper-texture-flashcard {
+    background-image: url(https://lh3.googleusercontent.com/aida-public/AB6AXuCumS2OVa1UDG785EVmJOoBg3kX8maKzAaLE1BcCXiIVeR0ZVzCGWBEYfXL30E1DOy84SzVs0Eey0kofLwDgTr_EN8HpC8hTGC4S0rxA8WybIMtoYbgVblWevwNzF6cavNwNMGR9z3fxqZBwTPRB2IT0OWVdPvZuZmiyKExR-V8w1gJQ3MY83XpZskYrnqqZXaAL9Utp7FLLUwqZA-E9hgLWmzVZz0JLr0hmbE-lfnWgY2Htivty0UqWpdqagk1OYJ8_mE5If8deF4);
+}
+
+.perspective-1000 {
+    perspective: 1000px;
+}
+
+/* Auth */
+.paper-shadow-auth {
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06), 0 10px 15px -3px rgba(0, 0, 0, 0.05);
+}
+
+.mudra-line {
+    stroke-dasharray: 1000;
+    stroke-dashoffset: 1000;
+    animation: dash 3s linear forwards;
+}
+
+@keyframes dash {
+    to {
+        stroke-dashoffset: 0;
+    }
+}
+
+/* Decks */
+.bg-texture-decks {
+    background-image: url(https://lh3.googleusercontent.com/aida-public/AB6AXuD--tUBvnJNieGsCD_qw7cKOp4UDPqdr-m4mC05ldNKv9ZL6k74l-7ksn0Rp-FbWMoHgsW-0jAi9bK_XnFhwNS57KQ_fzJxXK5knTsh_tZhLT579DokLGVpRAlqaWPMxKQPwJLRtalUY2ohQWdbBUVSrwEO1MYE8vYYzZXMZwt9RzFAUCUIdK5Ma40VaXJZ1p9UKJMC6L3QoI9IURwWZO2lmjv_8HiSmYiYxbEaQg15gWRicyew1UFu6jd-wRmmalepa4c3XqCMXQs);
+}
+
+/* Settings */
+.toggle-checkbox:checked {
+    right: 0;
+    border-color: #d65a5a;
+}
+
+.toggle-checkbox:checked+.toggle-label {
+    background-color: #d65a5a;
+}
+
+.bg-texture-settings {
+    background-image: url(https://lh3.googleusercontent.com/aida-public/AB6AXuDkm7qLlyLQ-ao0CWEpaE51BOfHMVS6dA0693Hsw3uMSnCrT87wnKiMkQ4Jvy3nsxsmucKxdA0yR5phIInAedywIdg2Bog6bfgIoNAWrcIen41M3m6d8swl05oJvs6-0atkUFzhp7upXxwcLKz9-e71xEmDosTTl4UOqFJbqGpDZvZv-F4eVP1ykVIb7rh-ux9JtgZQVFGEsbfZob3OwfeNDQfT6bR5GHOQxLcFltQksNS8965ZJUnGQQnFNnsgpfcC43M3TqtdA2A);
+}
+
+/* Paper Pattern */
+.bg-paper-pattern {
+    background-image: url('https://www.transparenttextures.com/patterns/cream-paper.png');
+}
+
+/* 3D Transform Utilities */
+.preserve-3d {
+    transform-style: preserve-3d;
+}
+
+.backface-hidden {
+    backface-visibility: hidden;
+}
+
+.rotate-y-180 {
+    transform: rotateY(180deg);
+}
