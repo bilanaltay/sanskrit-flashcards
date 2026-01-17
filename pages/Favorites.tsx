@@ -7,23 +7,25 @@ const Favorites: React.FC = () => {
 
     return (
         <MobileLayout className="bg-texture-fav text-ink font-noto-serif antialiased h-full overflow-hidden flex flex-col relative border-x border-stone-200/50">
-            <header className="pt-6 pb-2 px-6 flex items-center justify-between z-20 sticky top-0 bg-texture-fav/90 backdrop-blur-sm shrink-0">
+            <header className="mt-6 pt-6 pb-2 px-6 flex items-center justify-between z-20 sticky top-0 bg-texture-fav/90 backdrop-blur-sm shrink-0">
+                <div className="flex flex-col">
+                    <h2 className="font-dancing text-3xl text-primary-fav tracking-wide">Favoriler</h2>
+                    <p className="text-xs text-primary-decks font-medium tracking-widest uppercase mt-1">Favori Sanskrit Kartlar</p>
+                </div>
                 <button
-                    onClick={() => navigate(-1)}
-                    className="text-ink-light hover:text-primary-fav transition-colors p-2 -ml-2 rounded-full hover:bg-stone-100"
+                    onClick={() => navigate('/settings')}
+                    className="flex items-center justify-center w-10 h-10 rounded-full hover:bg-black/5 transition-colors group"
                 >
-                    <span className="material-symbols-outlined text-2xl">arrow_back</span>
+                    <span className="material-symbols-outlined text-text-muted group-hover:text-primary-decks transition-colors">settings</span>
                 </button>
-                <h1 className="font-dancing text-3xl text-primary-fav tracking-wide">Favoriler</h1>
-                <div className="w-10"></div>
             </header>
-            <div className="px-6 py-2 shrink-0">
+            <div className="mt-6 mx-6 py-2 shrink-0">
                 <div className="relative border-b border-stone-300 focus-within:border-primary-fav transition-colors">
                     <span className="material-symbols-outlined absolute left-0 top-1/2 -translate-y-1/2 text-stone-400 text-[20px]">search</span>
                     <input className="w-full bg-transparent border-none py-2 pl-8 pr-4 text-ink placeholder:text-stone-400 focus:ring-0 font-noto-sans text-sm" placeholder="Ara..." />
                 </div>
             </div>
-            <main className="flex-1 overflow-y-auto no-scrollbar px-6 py-6 space-y-6">
+            <main className="flex-1 overflow-y-auto no-scrollbar px-6 pt-6 pb-28 space-y-6">
                 {/* Dharma */}
                 <div className="group bg-white card-texture-fav rounded-[2px] p-5 shadow-card hover:shadow-card-hover transition-all duration-300 border border-stone-100 flex items-center gap-5 relative">
                     <div className="absolute top-2 left-2 w-2 h-2 border-t border-l border-stone-200"></div>
@@ -129,7 +131,26 @@ const Favorites: React.FC = () => {
                     </div>
                 </div>
             </main>
-            <div className="h-8 w-full bg-gradient-to-t from-paper via-paper/50 to-transparent pointer-events-none sticky bottom-0 shrink-0"></div>
+            <nav className="absolute bottom-0 w-full bg-texture-fav/90 backdrop-blur-md border-t border-stone-200/60 px-8 py-2 pb-6 flex items-center justify-between z-20">
+                <button
+                    onClick={() => navigate('/decks')}
+                    className="flex flex-col items-center justify-center gap-1 text-stone-400 hover:text-primary-decks transition-colors w-16 group">
+                    <span className="material-symbols-outlined text-[26px] group-hover:-translate-y-0.5 transition-transform">grid_view</span>
+                    <span className="text-[10px] font-medium tracking-wide mt-0.5">DESTELER</span>
+                </button>
+                <button
+                    className="flex flex-col items-center justify-center gap-1 text-primary-fav w-16">
+                    <span className="material-symbols-outlined text-[26px] filled">favorite</span>
+                    <span className="text-[10px] font-bold tracking-wide mt-0.5">FAVORİLER</span>
+                </button>
+                <button
+                    onClick={() => navigate('/statistics')}
+                    className="flex flex-col items-center justify-center gap-1 text-stone-400 hover:text-primary-decks transition-colors w-16 group">
+                    <span className="material-symbols-outlined text-[26px] group-hover:-translate-y-0.5 transition-transform">bar_chart</span>
+                    <span className="text-[10px] font-medium tracking-wide mt-0.5">İSTATİSTİK</span>
+                </button>
+            </nav>
+
         </MobileLayout>
     );
 };

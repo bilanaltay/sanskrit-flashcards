@@ -69,14 +69,10 @@ const Auth: React.FC = () => {
                             <span className="px-2 bg-card-light dark:bg-card-dark text-gray-500 dark:text-gray-400 font-cormorant italic">or continue with</span>
                         </div>
                     </div>
-                    <div className="grid grid-cols-2 gap-4">
-                        <button className="flex items-center justify-center px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg shadow-sm bg-white dark:bg-gray-800 text-sm font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors" type="button">
+                    <div className="flex justify-center w-full">
+                        <button className="flex items-center justify-center px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg shadow-sm bg-white dark:bg-gray-800 text-sm font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors w-full sm:w-auto" type="button">
                             <img alt="Google logo" className="h-5 w-5 mr-2" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBk42XKQYcXjhAd9s1oNIRtwIgjmxY96vS1gXVg-3JHtIfJ_T4V20aBA_jfcDh9bD9qCNIgQmOhAiGWhY_VeApyTRHpZrEoXlTUcW5h1oeR-X44q7zoU2TCYgCTbDy4uzFZ9OC08fJRnrdCd6WjndFLifpUw9ADY2EkCUCHrkBMGRufw7nTgosf6iAbtqumDIi47nx0zfldW9Ngq_zy3rEVxH4DSVkKymdSLoBGXEsrYB1r4I4piGcC9PT-Y1WqK4Z717D3ffe4zoU" />
                             Google
-                        </button>
-                        <button className="flex items-center justify-center px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg shadow-sm bg-white dark:bg-gray-800 text-sm font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors" type="button">
-                            <img alt="GitHub logo" className="h-5 w-5 mr-2 dark:invert" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDB9p4-jjJcl0RSWviGn55A6EsuTaG8u-8S0FmrYGFw0Mzl3rVXWATb3g5oNbTTU_6oOB6gZ9Ay28Gb8hH97-dr6gORO031JhGTXiFMa2k_tzk9GGc2-QWErYhVqvnZV_xgYeP3TXZ84e_8H2NuqruIq_IQUJQVEwM5mdC3L5oVhKVuXrteRYJNTg_eyU5O7iQFqMrkuPz12gGQ5oxUfLIvtF0BBGrVpRgJkoqK-z-tP8Z8MNkHLdH9903lqUTyWM64muWdlosXa4w" />
-                            Apple
                         </button>
                     </div>
                 </div>

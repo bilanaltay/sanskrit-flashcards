@@ -10,6 +10,9 @@ export interface Card {
 export interface Deck {
   id: string;
   title: string;
+  description?: string;
+  version?: number;
+  themeColor?: string;
   cards: Card[];
 }
 

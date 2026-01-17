@@ -6,8 +6,8 @@ const Settings: React.FC = () => {
     const navigate = useNavigate();
 
     return (
-        <MobileLayout className="bg-background-paper bg-texture-settings font-lexend text-text-main pb-10 antialiased overflow-y-auto no-scrollbar relative border-x border-dashed border-border-subtle/50 bg-white/50">
-            <header className="sticky top-0 z-20 bg-background-paper/90 backdrop-blur-sm px-6 py-4 flex items-center justify-between border-b border-border-subtle shrink-0">
+        <MobileLayout className="bg-gradient-to-b from-[#fffbf7] to-[#ffe0b5] font-lexend text-text-main pb-10 antialiased overflow-y-auto no-scrollbar relative border-x border-dashed border-border-subtle/50">
+            <header className="sticky top-0 z-20 bg-white/80 backdrop-blur-sm px-6 py-4 flex items-center justify-between border-b border-border-subtle shrink-0">
                 <button
                     onClick={() => navigate(-1)}
                     className="flex items-center justify-center w-8 h-8 rounded-full hover:bg-black/5 transition-colors text-text-main"
@@ -19,10 +19,6 @@ const Settings: React.FC = () => {
             </header>
             <div className="flex flex-col px-6 pt-6 shrink-0">
                 <div className="mb-8 relative rounded-lg bg-surface-paper shadow-card border border-border-subtle p-6 flex flex-col items-center text-center">
-                    <div className="absolute top-2 left-2 w-2 h-2 border-t border-l border-primary-settings/30"></div>
-                    <div className="absolute top-2 right-2 w-2 h-2 border-t border-r border-primary-settings/30"></div>
-                    <div className="absolute bottom-2 left-2 w-2 h-2 border-b border-l border-primary-settings/30"></div>
-                    <div className="absolute bottom-2 right-2 w-2 h-2 border-b border-r border-primary-settings/30"></div>
                     <div className="relative mb-3">
                         <div className="h-20 w-20 rounded-full bg-cover bg-center border border-border-subtle shadow-sm grayscale-[20%]" style={{ backgroundImage: 'url("https://lh3.googleusercontent.com/aida-public/AB6AXuBJHHHU0zYLc2GsL45cHTdKmsM4HZfe6rQPaZf9eUGSW4-k2idRim9cIfWeqgiYsUutxKnX-vrslD6IYlavLAlzEsC10Z9f7pQ6jJ_x_NZjndfNogXCAzGo1Yhg2GPS4KHvqijP_-RluhHW7mZjuhru3FJNcvbylIWSYwylanNwIkHdcuf5CSfeH4ry-CVMGtvSLudopaf04-qa4pgWppX0VxlVp3Ax8d5usaeJSZFP-eMwuI4JTG1kuCWOohFzmwAjY-BTt4_sgTk")' }}></div>
                         <button className="absolute bottom-0 right-0 bg-white text-primary-settings rounded-full p-1.5 shadow-sm border border-border-subtle hover:bg-primary-settings hover:text-white transition-all">

@@ -5,9 +5,12 @@ interface StudyCardProps {
   card: Card;
   isFlipped: boolean;
   onFlip: () => void;
+  themeColor?: string;
 }
 
-export const StudyCard: React.FC<StudyCardProps> = ({ card, isFlipped, onFlip }) => {
+export const StudyCard: React.FC<StudyCardProps> = ({ card, isFlipped, onFlip, themeColor }) => {
+  const gradientClass = themeColor || 'from-[#fed9b7] to-[#f07e6e]';
+
   return (
     <div
       className="relative w-full max-w-[320px] aspect-[3/4.5] group cursor-pointer perspective-[1000px] select-none"
@@ -25,7 +28,7 @@ export const StudyCard: React.FC<StudyCardProps> = ({ card, isFlipped, onFlip })
         `}
       >
         {/* --- FRONT SIDE --- */}
-        <div className="absolute inset-0 w-full h-full bg-gradient-to-br from-[#fed9b7] to-[#f07e6e] rounded-sm shadow-card flex flex-col overflow-hidden border border-black/5 backface-hidden z-20">
+        <div className={`absolute inset-0 w-full h-full bg-gradient-to-br ${gradientClass} rounded-sm shadow-card flex flex-col overflow-hidden border border-black/5 backface-hidden z-20`}>
 
           {/* Inner Dashed Border */}
           <div className="absolute inset-3 border border-dashed border-white/20 pointer-events-none rounded-sm" />
@@ -70,7 +73,7 @@ export const StudyCard: React.FC<StudyCardProps> = ({ card, isFlipped, onFlip })
         </div>
 
         {/* --- BACK SIDE --- */}
-        <div className="absolute inset-0 w-full h-full bg-gradient-to-br from-[#fed9b7] to-[#f07e6e] rounded-sm shadow-card flex flex-col overflow-hidden border border-black/5 backface-hidden rotate-y-180 z-20">
+        <div className={`absolute inset-0 w-full h-full bg-gradient-to-br ${gradientClass} rounded-sm shadow-card flex flex-col overflow-hidden border border-black/5 backface-hidden rotate-y-180 z-20`}>
           <div className="absolute inset-3 border border-dashed border-white/20 pointer-events-none rounded-sm" />
 
           <div className="flex-1 flex flex-col items-center justify-center p-8 text-center">
