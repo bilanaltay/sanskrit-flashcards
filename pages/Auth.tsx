@@ -10,22 +10,42 @@ const Auth: React.FC = () => {
         navigate('/decks');
     };
 
+
     return (
-        <MobileLayout className="bg-background-light dark:bg-background-dark text-gray-800 dark:text-gray-100 font-noto-sans relative overflow-hidden transition-colors duration-300">
-            <div className="absolute inset-0 opacity-40 pointer-events-none z-0 mix-blend-multiply dark:mix-blend-overlay bg-paper-pattern"></div>
+        <MobileLayout className="bg-texture-fav text-ink font-noto-serif relative overflow-hidden transition-colors duration-300">
             <div className="absolute top-0 left-0 w-64 h-64 bg-primary-auth opacity-5 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2"></div>
             <div className="absolute bottom-0 right-0 w-80 h-80 bg-primary-auth opacity-5 rounded-full blur-3xl translate-x-1/3 translate-y-1/3"></div>
             <div className="relative z-10 w-full h-full flex flex-col justify-center p-6 overflow-y-auto no-scrollbar">
                 <div className="text-center mb-10 flex flex-col items-center shrink-0">
                     <div className="w-24 h-24 mb-4 relative">
-                        <svg className="w-full h-full stroke-gray-800 dark:stroke-gray-200 fill-none stroke-1" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 100 100">
-                            <path className="mudra-line" d="M50 85 C 40 85, 30 80, 25 70 L 25 50 C 25 45, 28 40, 30 35 L 35 20 C 36 15, 40 12, 45 15 C 48 17, 48 22, 47 25 L 45 35 M 45 35 L 50 15 C 51 10, 56 8, 60 10 C 63 12, 63 17, 62 20 L 58 35 M 58 35 L 65 20 C 66 15, 71 13, 75 15 C 78 17, 78 22, 77 25 L 70 45 L 75 45 C 80 45, 85 50, 85 55 L 85 65 C 85 75, 75 85, 65 85 Z"></path>
-                            <circle className="fill-primary-auth stroke-none" cx="50" cy="50" r="1"></circle>
+                        <svg
+                            className="w-full h-full stroke-gray-800 dark:stroke-gray-200 fill-none stroke-1"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            viewBox="0 0 100 100"
+                        >
+                            <g className="mudra-line">
+                                {/* Central Petal */}
+                                <path d="M50 20 C60 40 70 55 50 85 C30 55 40 40 50 20 Z" />
+                                {/* Inner Left */}
+                                <path d="M50 85 C40 65 30 55 35 40" />
+                                {/* Inner Right */}
+                                <path d="M50 85 C60 65 70 55 65 40" />
+                                {/* Outer Left */}
+                                <path d="M50 85 C35 70 20 60 25 45" />
+                                {/* Outer Right */}
+                                <path d="M50 85 C65 70 80 60 75 45" />
+                                {/* Base Dots */}
+                                <circle cx="50" cy="92" r="1.5" className="fill-current stroke-none" />
+                                <circle cx="45" cy="90" r="1" className="fill-current stroke-none" />
+                                <circle cx="55" cy="90" r="1" className="fill-current stroke-none" />
+                            </g>
                         </svg>
+
                     </div>
                     <h1 className="font-dancing text-5xl text-primary-auth mb-2">Mudra</h1>
-                    <p className="font-cormorant text-xl italic text-gray-600 dark:text-gray-400">मुद्रा</p>
-                    <p className="text-sm mt-2 text-text-secondary dark:text-text-secondary-dark tracking-wide uppercase text-[10px]">Ancient Wisdom • Modern Learning</p>
+                    <p className="font-cormorant text-xl italic text-black">मुद्रा</p>
+                    <p className="text-sm mt-2 text-black tracking-wide uppercase text-[10px]">Ancient Wisdom • Modern Learning</p>
                 </div>
                 <div className="bg-card-light dark:bg-card-dark rounded-xl paper-shadow-auth p-8 w-full border border-gray-100 dark:border-gray-800 backdrop-blur-sm bg-opacity-90 dark:bg-opacity-90 shrink-0">
                     <div className="flex bg-gray-100 dark:bg-gray-800 rounded-lg p-1 mb-8">
@@ -76,7 +96,7 @@ const Auth: React.FC = () => {
                         </button>
                     </div>
                 </div>
-                <p className="mt-8 text-center text-xs text-gray-500 dark:text-gray-500 shrink-0">
+                <p className="mt-8 text-center text-xs text-black shrink-0">
                     By continuing, you agree to our
                     <a className="font-medium text-primary-auth hover:text-primary-auth-dark underline decoration-dotted ml-1" href="#">Terms of Service</a>
                     <span className="mx-1">and</span>
