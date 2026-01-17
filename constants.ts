@@ -56,6 +56,7 @@ export const DECKS: Record<string, Deck> = {
     description: '7 Enerji Merkezi • Teori',
     version: 1,
     themeColor: 'from-[#ffecd2] to-[#fcb69f]',
+    defaultLang: 'tr',
     cards: [
       {
         id: 'chakra-001',
@@ -74,6 +75,7 @@ export const DECKS: Record<string, Deck> = {
     description: 'El Yogasının Gücü',
     version: 1,
     themeColor: 'from-[#f6d365] to-[#fda085]',
+    defaultLang: 'tr',
     cards: [
       {
         id: 'mudra-001',
@@ -91,6 +93,7 @@ export const DECKS: Record<string, Deck> = {
     description: 'Temel Duruşlar',
     version: 1,
     themeColor: 'from-[#e6b980] to-[#eacda3]',
+    defaultLang: 'tr',
     cards: [
       {
         id: 'asana-001',
