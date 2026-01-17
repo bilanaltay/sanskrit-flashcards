@@ -13,6 +13,7 @@ export interface Deck {
   description?: string;
   version?: number;
   themeColor?: string;
+  defaultLang?: string;
   cards: Card[];
 }
 
