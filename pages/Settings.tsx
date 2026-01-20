@@ -6,116 +6,155 @@ const Settings: React.FC = () => {
     const navigate = useNavigate();
 
     return (
-        <MobileLayout className="bg-gradient-to-b from-[#fffbf7] to-[#ffe0b5] font-lexend text-text-main pb-10 antialiased overflow-y-auto no-scrollbar relative border-x border-dashed border-border-subtle/50">
-            <header className="sticky top-0 z-20 bg-white/80 backdrop-blur-sm px-6 py-4 flex items-center justify-between border-b border-border-subtle shrink-0">
+        <MobileLayout className="bg-paper-dark font-sans text-ink overflow-y-auto no-scrollbar relative">
+            {/* Header */}
+            <header className="sticky top-0 z-20 bg-paper/90 backdrop-blur-md px-6 py-5 flex items-center justify-between border-b border-border-subtle shrink-0">
                 <button
                     onClick={() => navigate(-1)}
-                    className="flex items-center justify-center w-8 h-8 rounded-full hover:bg-black/5 transition-colors text-text-main"
+                    className="flex items-center justify-center w-11 h-11 rounded-xl bg-surface-card hover:bg-primary-light transition-all duration-200 shadow-sm border border-border-subtle"
                 >
-                    <span className="material-symbols-outlined text-[20px] font-light">arrow_back</span>
+                    <span className="material-symbols-outlined text-[22px] text-ink-light">arrow_back</span>
                 </button>
-                <h1 className="text-xl font-cormorant font-bold tracking-wide text-primary-settings uppercase">Ayarlar</h1>
-                <div className="w-8"></div>
+                <h1 className="text-xl font-semibold text-ink">Ayarlar</h1>
+                <div className="w-11"></div>
             </header>
-            <div className="flex flex-col px-6 pt-6 shrink-0">
-                <div className="mb-8 relative rounded-lg bg-surface-paper shadow-card border border-border-subtle p-6 flex flex-col items-center text-center">
-                    <div className="relative mb-3">
-                        <div className="h-20 w-20 rounded-full bg-cover bg-center border border-border-subtle shadow-sm grayscale-[20%]" style={{ backgroundImage: 'url("https://lh3.googleusercontent.com/aida-public/AB6AXuBJHHHU0zYLc2GsL45cHTdKmsM4HZfe6rQPaZf9eUGSW4-k2idRim9cIfWeqgiYsUutxKnX-vrslD6IYlavLAlzEsC10Z9f7pQ6jJ_x_NZjndfNogXCAzGo1Yhg2GPS4KHvqijP_-RluhHW7mZjuhru3FJNcvbylIWSYwylanNwIkHdcuf5CSfeH4ry-CVMGtvSLudopaf04-qa4pgWppX0VxlVp3Ax8d5usaeJSZFP-eMwuI4JTG1kuCWOohFzmwAjY-BTt4_sgTk")' }}></div>
-                        <button className="absolute bottom-0 right-0 bg-white text-primary-settings rounded-full p-1.5 shadow-sm border border-border-subtle hover:bg-primary-settings hover:text-white transition-all">
-                            <span className="material-symbols-outlined text-[14px] block">edit</span>
+
+            <div className="flex flex-col px-6 pt-8 pb-10">
+                {/* Profile Card */}
+                <div className="mb-10 relative rounded-2xl bg-surface-card shadow-card border border-border-subtle p-8 flex flex-col items-center text-center">
+                    <div className="relative mb-4">
+                        <div 
+                            className="h-24 w-24 rounded-full bg-cover bg-center border-2 border-border-subtle shadow-sm" 
+                            style={{ backgroundImage: 'url("https://lh3.googleusercontent.com/aida-public/AB6AXuBJHHHU0zYLc2GsL45cHTdKmsM4HZfe6rQPaZf9eUGSW4-k2idRim9cIfWeqgiYsUutxKnX-vrslD6IYlavLAlzEsC10Z9f7pQ6jJ_x_NZjndfNogXCAzGo1Yhg2GPS4KHvqijP_-RluhHW7mZjuhru3FJNcvbylIWSYwylanNwIkHdcuf5CSfeH4ry-CVMGtvSLudopaf04-qa4pgWppX0VxlVp3Ax8d5usaeJSZFP-eMwuI4JTG1kuCWOohFzmwAjY-BTt4_sgTk")' }}
+                        />
+                        <button className="absolute bottom-0 right-0 bg-primary text-white rounded-full p-2 shadow-sm hover:bg-primary-intro-dark transition-all">
+                            <span className="material-symbols-outlined text-[16px] block">edit</span>
                         </button>
                     </div>
-                    <h2 className="text-2xl font-cormorant font-semibold text-text-main">Ali Yılmaz</h2>
-                    <p className="text-primary-settings font-cormorant italic text-lg mt-1">Sanskritçe Başlangıç</p>
-                    <div className="mt-4 flex items-center justify-center gap-2 px-3 py-1 bg-background-paper rounded-full border border-border-subtle">
-                        <span className="material-symbols-outlined text-primary-settings text-[16px]">local_fire_department</span>
-                        <span className="text-text-muted text-xs font-medium tracking-wide uppercase">12 Günlük Seri</span>
-                    </div>
-                </div>
-                <div className="mb-8">
-                    <h3 className="px-1 mb-3 text-xs font-bold text-text-muted uppercase tracking-[0.15em] font-lexend">Çalışma Tercihleri</h3>
-                    <div className="flex flex-col bg-surface-paper border-y border-border-subtle divide-y divide-border-subtle/50">
-                        <button className="flex items-center justify-between p-4 w-full hover:bg-background-paper transition-colors group">
-                            <div className="flex items-center gap-3">
-                                <span className="material-symbols-outlined text-[20px] text-text-muted group-hover:text-primary-settings transition-colors font-light">target</span>
-                                <span className="text-base font-cormorant font-medium text-text-main">Günlük Hedef</span>
-                            </div>
-                            <div className="flex items-center gap-2">
-                                <span className="text-sm font-lexend text-primary-settings">20 Kart</span>
-                                <span className="material-symbols-outlined text-[18px] text-gray-300">chevron_right</span>
-                            </div>
-                        </button>
-                        <button className="flex items-center justify-between p-4 w-full hover:bg-background-paper transition-colors group">
-                            <div className="flex items-center gap-3">
-                                <span className="material-symbols-outlined text-[20px] text-text-muted group-hover:text-primary-settings transition-colors font-light">school</span>
-                                <span className="text-base font-cormorant font-medium text-text-main">Seviye</span>
-                            </div>
-                            <div className="flex items-center gap-2">
-                                <span className="text-sm font-lexend text-primary-settings">Başlangıç</span>
-                                <span className="material-symbols-outlined text-[18px] text-gray-300">chevron_right</span>
-                            </div>
-                        </button>
+                    <h2 className="text-2xl font-semibold text-ink">Ali Yılmaz</h2>
+                    <p className="text-primary text-base font-medium mt-1">Sanskritçe Başlangıç</p>
+                    <div className="mt-5 flex items-center justify-center gap-2 px-4 py-2 bg-primary-light rounded-full">
+                        <span className="material-symbols-outlined text-primary text-[18px]">local_fire_department</span>
+                        <span className="text-ink text-sm font-semibold">12 Günlük Seri</span>
                     </div>
                 </div>
+
+                {/* Study Preferences */}
                 <div className="mb-8">
-                    <h3 className="px-1 mb-3 text-xs font-bold text-text-muted uppercase tracking-[0.15em] font-lexend">Uygulama</h3>
-                    <div className="flex flex-col bg-surface-paper border-y border-border-subtle divide-y divide-border-subtle/50">
-                        <div className="flex items-center justify-between p-4 w-full">
-                            <div className="flex items-center gap-3">
-                                <span className="material-symbols-outlined text-[20px] text-text-muted font-light">dark_mode</span>
-                                <span className="text-base font-cormorant font-medium text-text-main">Karanlık Mod</span>
+                    <h3 className="px-1 mb-4 text-xs font-semibold text-subtle uppercase tracking-wider">Çalışma Tercihleri</h3>
+                    <div className="flex flex-col bg-surface-card border border-border-subtle rounded-2xl overflow-hidden shadow-card divide-y divide-border-subtle">
+                        <button className="flex items-center justify-between p-5 w-full hover:bg-primary-light/50 transition-colors group">
+                            <div className="flex items-center gap-4">
+                                <div className="w-10 h-10 rounded-xl bg-primary-light flex items-center justify-center">
+                                    <span className="material-symbols-outlined text-[20px] text-primary">target</span>
+                                </div>
+                                <span className="text-base font-medium text-ink">Günlük Hedef</span>
                             </div>
-                            <div className="relative inline-block w-10 align-middle select-none">
-                                <input className="toggle-checkbox absolute block w-5 h-5 rounded-full bg-white border-2 border-gray-300 appearance-none cursor-pointer transition-all duration-300 checked:right-0 checked:border-primary-settings right-5 z-10" id="toggle-dark" name="toggle-dark" type="checkbox" />
-                                <label className="toggle-label block overflow-hidden h-5 rounded-full bg-gray-200 cursor-pointer transition-colors duration-300" htmlFor="toggle-dark"></label>
+                            <div className="flex items-center gap-2">
+                                <span className="text-sm font-semibold text-primary">20 Kart</span>
+                                <span className="material-symbols-outlined text-[18px] text-subtle">chevron_right</span>
+                            </div>
+                        </button>
+                        <button className="flex items-center justify-between p-5 w-full hover:bg-primary-light/50 transition-colors group">
+                            <div className="flex items-center gap-4">
+                                <div className="w-10 h-10 rounded-xl bg-primary-light flex items-center justify-center">
+                                    <span className="material-symbols-outlined text-[20px] text-primary">school</span>
+                                </div>
+                                <span className="text-base font-medium text-ink">Seviye</span>
+                            </div>
+                            <div className="flex items-center gap-2">
+                                <span className="text-sm font-semibold text-primary">Başlangıç</span>
+                                <span className="material-symbols-outlined text-[18px] text-subtle">chevron_right</span>
+                            </div>
+                        </button>
+                    </div>
+                </div>
+
+                {/* App Settings */}
+                <div className="mb-8">
+                    <h3 className="px-1 mb-4 text-xs font-semibold text-subtle uppercase tracking-wider">Uygulama</h3>
+                    <div className="flex flex-col bg-surface-card border border-border-subtle rounded-2xl overflow-hidden shadow-card divide-y divide-border-subtle">
+                        <div className="flex items-center justify-between p-5 w-full">
+                            <div className="flex items-center gap-4">
+                                <div className="w-10 h-10 rounded-xl bg-paper-dark flex items-center justify-center">
+                                    <span className="material-symbols-outlined text-[20px] text-ink-light">dark_mode</span>
+                                </div>
+                                <span className="text-base font-medium text-ink">Karanlık Mod</span>
+                            </div>
+                            <div className="relative inline-block w-12 align-middle select-none">
+                                <input 
+                                    className="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-2 border-stone-300 appearance-none cursor-pointer transition-all duration-300 checked:right-0 checked:border-primary right-6 z-10" 
+                                    id="toggle-dark" 
+                                    name="toggle-dark" 
+                                    type="checkbox" 
+                                />
+                                <label className="toggle-label block overflow-hidden h-6 rounded-full bg-stone-200 cursor-pointer transition-colors duration-300" htmlFor="toggle-dark"></label>
                             </div>
                         </div>
-                        <div className="flex items-center justify-between p-4 w-full">
-                            <div className="flex items-center gap-3">
-                                <span className="material-symbols-outlined text-[20px] text-text-muted font-light">notifications</span>
-                                <span className="text-base font-cormorant font-medium text-text-main">Hatırlatıcılar</span>
+                        <div className="flex items-center justify-between p-5 w-full">
+                            <div className="flex items-center gap-4">
+                                <div className="w-10 h-10 rounded-xl bg-paper-dark flex items-center justify-center">
+                                    <span className="material-symbols-outlined text-[20px] text-ink-light">notifications</span>
+                                </div>
+                                <span className="text-base font-medium text-ink">Hatırlatıcılar</span>
                             </div>
-                            <div className="relative inline-block w-10 align-middle select-none">
-                                <input defaultChecked className="toggle-checkbox absolute block w-5 h-5 rounded-full bg-white border-2 border-gray-300 appearance-none cursor-pointer transition-all duration-300 checked:right-0 checked:border-primary-settings right-5 z-10" id="toggle-notif" name="toggle-notif" type="checkbox" />
-                                <label className="toggle-label block overflow-hidden h-5 rounded-full bg-gray-200 cursor-pointer transition-colors duration-300" htmlFor="toggle-notif"></label>
+                            <div className="relative inline-block w-12 align-middle select-none">
+                                <input 
+                                    defaultChecked 
+                                    className="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-2 border-stone-300 appearance-none cursor-pointer transition-all duration-300 checked:right-0 checked:border-primary right-6 z-10" 
+                                    id="toggle-notif" 
+                                    name="toggle-notif" 
+                                    type="checkbox" 
+                                />
+                                <label className="toggle-label block overflow-hidden h-6 rounded-full bg-stone-200 cursor-pointer transition-colors duration-300" htmlFor="toggle-notif"></label>
                             </div>
                         </div>
-                        <button className="flex items-center justify-between p-4 w-full hover:bg-background-paper transition-colors group">
-                            <div className="flex items-center gap-3">
-                                <span className="material-symbols-outlined text-[20px] text-text-muted group-hover:text-primary-settings transition-colors font-light">language</span>
-                                <span className="text-base font-cormorant font-medium text-text-main">Dil</span>
+                        <button className="flex items-center justify-between p-5 w-full hover:bg-primary-light/50 transition-colors group">
+                            <div className="flex items-center gap-4">
+                                <div className="w-10 h-10 rounded-xl bg-paper-dark flex items-center justify-center">
+                                    <span className="material-symbols-outlined text-[20px] text-ink-light">language</span>
+                                </div>
+                                <span className="text-base font-medium text-ink">Dil</span>
                             </div>
                             <div className="flex items-center gap-2">
-                                <span className="text-sm font-lexend text-text-muted">Türkçe</span>
-                                <span className="material-symbols-outlined text-[18px] text-gray-300">chevron_right</span>
+                                <span className="text-sm font-medium text-subtle">Türkçe</span>
+                                <span className="material-symbols-outlined text-[18px] text-subtle">chevron_right</span>
                             </div>
                         </button>
                     </div>
                 </div>
+
+                {/* Support & Account */}
                 <div className="mb-12">
-                    <h3 className="px-1 mb-3 text-xs font-bold text-text-muted uppercase tracking-[0.15em] font-lexend">Destek &amp; Hesap</h3>
-                    <div className="flex flex-col bg-surface-paper border-y border-border-subtle divide-y divide-border-subtle/50">
-                        <button className="flex items-center justify-between p-4 w-full hover:bg-background-paper transition-colors group">
-                            <div className="flex items-center gap-3">
-                                <span className="material-symbols-outlined text-[20px] text-text-muted group-hover:text-primary-settings transition-colors font-light">mail</span>
-                                <span className="text-base font-cormorant font-medium text-text-main">Bize Ulaşın</span>
+                    <h3 className="px-1 mb-4 text-xs font-semibold text-subtle uppercase tracking-wider">Destek & Hesap</h3>
+                    <div className="flex flex-col bg-surface-card border border-border-subtle rounded-2xl overflow-hidden shadow-card divide-y divide-border-subtle">
+                        <button className="flex items-center justify-between p-5 w-full hover:bg-primary-light/50 transition-colors group">
+                            <div className="flex items-center gap-4">
+                                <div className="w-10 h-10 rounded-xl bg-paper-dark flex items-center justify-center">
+                                    <span className="material-symbols-outlined text-[20px] text-ink-light">mail</span>
+                                </div>
+                                <span className="text-base font-medium text-ink">Bize Ulaşın</span>
                             </div>
-                            <span className="material-symbols-outlined text-[18px] text-gray-300">chevron_right</span>
+                            <span className="material-symbols-outlined text-[18px] text-subtle">chevron_right</span>
                         </button>
                         <button
                             onClick={() => navigate('/')}
-                            className="flex items-center justify-between p-4 w-full hover:bg-red-50/50 transition-colors group"
+                            className="flex items-center justify-between p-5 w-full hover:bg-red-50 transition-colors group"
                         >
-                            <div className="flex items-center gap-3">
-                                <span className="material-symbols-outlined text-[20px] text-primary-settings/80 font-light">logout</span>
-                                <span className="text-base font-cormorant font-medium text-primary-settings">Çıkış Yap</span>
+                            <div className="flex items-center gap-4">
+                                <div className="w-10 h-10 rounded-xl bg-red-50 flex items-center justify-center">
+                                    <span className="material-symbols-outlined text-[20px] text-red-500">logout</span>
+                                </div>
+                                <span className="text-base font-medium text-red-500">Çıkış Yap</span>
                             </div>
                         </button>
                     </div>
                 </div>
-                <div className="flex flex-col items-center justify-center pb-8 gap-3 opacity-60">
-                    <div className="h-px w-12 bg-border-subtle"></div>
-                    <p className="text-[10px] uppercase tracking-widest text-text-muted font-lexend">Sanskrit Cards v2.4.0</p>
+
+                {/* Footer */}
+                <div className="flex flex-col items-center justify-center pb-8 gap-3 opacity-50">
+                    <div className="h-px w-16 bg-border-subtle"></div>
+                    <p className="text-xs text-subtle font-medium">Sanskrit Flow v2.4.0</p>
                 </div>
             </div>
         </MobileLayout>

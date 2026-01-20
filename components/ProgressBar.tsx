@@ -11,15 +11,18 @@ export const ProgressBar: React.FC<ProgressBarProps> = ({ current, total, label 
 
   return (
     <div className="flex flex-col items-center w-full max-w-[200px]">
-      <span className="text-[10px] font-bold tracking-[0.2em] uppercase text-subtle mb-2">
+      <span className="text-xs font-semibold tracking-wide text-ink mb-2">
         {label}
       </span>
-      <div className="h-1.5 w-16 bg-accent/20 rounded-full overflow-hidden">
+      <div className="h-2 w-20 bg-border-subtle rounded-full overflow-hidden">
         <div 
-          className="h-full bg-accent rounded-full transition-all duration-500 ease-out" 
+          className="h-full bg-primary rounded-full transition-all duration-500 ease-out" 
           style={{ width: `${percentage}%` }}
         />
       </div>
+      <span className="text-[10px] font-medium text-subtle mt-1.5">
+        {current + 1} / {total}
+      </span>
     </div>
   );
 };

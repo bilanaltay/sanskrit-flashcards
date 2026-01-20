@@ -12,15 +12,10 @@ const StudySession: React.FC = () => {
     const navigate = useNavigate();
     const { deckId } = useParams<{ deckId: string }>();
 
-    // 1. Resolve Deck
     const currentDeck = deckId ? DECKS[deckId] : undefined;
-
-    // 2. Storage Key Construction
     const STORAGE_KEY = currentDeck ? `flashcards:v1:${currentDeck.id}` : '';
 
-    // State initialization
     const [state, setState] = useState<StudyState>(() => {
-        // Fallback for invalid deck, handled by render redirect
         if (!currentDeck) {
             return {
                 deckId: '',
@@ -34,17 +29,10 @@ const StudySession: React.FC = () => {
         if (saved) {
             try {
                 const parsed = JSON.parse(saved);
-
-                // Version Check Strategy:
-                // If versions match, trust the saved state.
-                // If mismatch (undefined vs 1, or 1 vs 2), perform soft reset
-                // Soft Reset: Re-shuffle, reset index, but we COULD keep 'learned' stats if we had them.
-                // For now, simpler approach: if version mismatch, just reset flow to ensure all new cards are seen.
                 const savedVersion = parsed.version || 0;
                 const currentVersion = currentDeck.version || 0;
 
                 if (savedVersion === currentVersion && parsed.shuffledOrder.length === currentDeck.cards.length) {
-                    // Ensure non-persisted state is clean
                     return {
                         ...parsed,
                         isFlipped: false
@@ -57,7 +45,6 @@ const StudySession: React.FC = () => {
             }
         }
 
-        // Default initial state
         return {
             deckId: currentDeck.id,
             currentCardIndex: 0,
@@ -66,43 +53,37 @@ const StudySession: React.FC = () => {
         };
     });
 
-    // Handle invalid deck redirect
     if (!currentDeck) {
         return <Navigate to="/decks" replace />;
     }
 
-    // Persist state changes
     useEffect(() => {
         if (!currentDeck) return;
 
-        // Exclude isFlipped from persistence
         const stateToSave = {
             ...state,
             isFlipped: false,
-            version: currentDeck.version // Save current version
+            version: currentDeck.version
         };
         localStorage.setItem(STORAGE_KEY, JSON.stringify(stateToSave));
     }, [state, currentDeck, STORAGE_KEY]);
 
-    // Handlers
     const handleFlip = useCallback(() => {
         setState(prev => ({ ...prev, isFlipped: !prev.isFlipped }));
     }, []);
 
     const handleNext = useCallback(() => {
         setState(prev => {
-            // Loop back to start if at end
             const nextIndex = (prev.currentCardIndex + 1) % currentDeck.cards.length;
             return {
                 ...prev,
                 currentCardIndex: nextIndex,
-                isFlipped: false // Reset flip on next
+                isFlipped: false
             };
         });
     }, [currentDeck]);
 
     const handleShuffle = useCallback(() => {
-        // Re-shuffle and reset index to 0
         setState(prev => ({
             ...prev,
             shuffledOrder: getShuffledIndices(currentDeck.cards.length),
@@ -112,26 +93,21 @@ const StudySession: React.FC = () => {
     }, [currentDeck]);
 
     const handleSave = useCallback(() => {
-        // Just a visual interaction for this demo
-        // In a real app, this would add to a favorites list
         console.log("Saved card:", currentCard.id);
-    }, [currentDeck]); // Warning: currentCard dep missing in original but derived from state
+    }, [currentDeck]);
 
-    // Derived state
     const currentCardId = state.shuffledOrder[state.currentCardIndex];
-    // Safe lookup incase data changed
     const currentCard = currentDeck.cards[currentCardId] || currentDeck.cards[0];
 
     return (
-        <MobileLayout className="bg-[#f0ede6] min-h-screen flex flex-col overflow-hidden font-sans text-ink selection:bg-accent selection:text-white relative">
-
+        <MobileLayout className="bg-paper-dark min-h-screen flex flex-col overflow-hidden font-sans text-ink relative">
             {/* Header */}
             <header className="flex items-center px-6 pt-12 pb-4 justify-between z-10 w-full shrink-0">
                 <button
                     onClick={() => navigate('/decks')}
-                    className="text-subtle hover:text-ink transition-colors size-10 flex items-center justify-center rounded-full hover:bg-black/5 active:bg-black/10"
+                    className="text-subtle hover:text-ink transition-colors w-11 h-11 flex items-center justify-center rounded-xl bg-surface-card hover:bg-primary-light border border-border-subtle shadow-sm"
                 >
-                    <span className="material-symbols-outlined !text-[24px]">arrow_back</span>
+                    <span className="material-symbols-outlined text-[22px]">arrow_back</span>
                 </button>
 
                 <ProgressBar
@@ -140,13 +116,13 @@ const StudySession: React.FC = () => {
                     label={currentDeck.title}
                 />
 
-                <button className="text-subtle hover:text-ink transition-colors size-10 flex items-center justify-center rounded-full hover:bg-black/5 active:bg-black/10">
-                    <span className="material-symbols-outlined !text-[24px]">more_horiz</span>
+                <button className="text-subtle hover:text-ink transition-colors w-11 h-11 flex items-center justify-center rounded-xl bg-surface-card hover:bg-primary-light border border-border-subtle shadow-sm">
+                    <span className="material-symbols-outlined text-[22px]">more_horiz</span>
                 </button>
             </header>
 
             {/* Main Content Area */}
-            <main className="flex-1 relative flex flex-col items-center justify-center w-full px-8 pb-8 perspective-1000 z-0">
+            <main className="flex-1 relative flex flex-col items-center justify-center w-full px-6 pb-8 perspective-1000 z-0">
                 <StudyCard
                     card={currentCard}
                     isFlipped={state.isFlipped}

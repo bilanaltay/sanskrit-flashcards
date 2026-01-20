@@ -2,155 +2,99 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { MobileLayout } from '../components/MobileLayout';
 
+// Sample favorites data - in production this would come from state/context
+const FAVORITES = [
+    { id: 1, sanskrit: 'धर्म', title: 'Dharma', meaning: 'Görev / Yasa' },
+    { id: 2, sanskrit: 'शान्ति', title: 'Śānti', meaning: 'Barış / Huzur' },
+    { id: 3, sanskrit: 'योग', title: 'Yoga', meaning: 'Birlik' },
+    { id: 4, sanskrit: 'कर्म', title: 'Karma', meaning: 'Eylem' },
+    { id: 5, sanskrit: 'प्रेम', title: 'Prema', meaning: 'İlahi Aşk' },
+];
+
 const Favorites: React.FC = () => {
     const navigate = useNavigate();
 
     return (
-        <MobileLayout className="bg-texture-fav text-ink font-noto-serif antialiased h-full overflow-hidden flex flex-col relative border-x border-stone-200/50">
-            <header className="mt-6 pt-6 pb-2 px-6 flex items-center justify-between z-20 sticky top-0 bg-texture-fav/90 backdrop-blur-sm shrink-0">
-                <div className="flex flex-col">
-                    <h2 className="font-dancing text-3xl text-primary-fav tracking-wide">Favoriler</h2>
-                    <p className="text-xs text-primary-decks font-medium tracking-widest uppercase mt-1">Favori Sanskrit Kartlar</p>
+        <MobileLayout className="bg-paper-dark font-sans text-ink flex flex-col relative">
+            {/* Header */}
+            <header className="bg-paper-dark flex items-end justify-between px-6 pt-14 pb-6 bg-paper z-10 sticky top-0 shrink-0">
+                <div className="flex flex-col gap-1">
+                    <h1 className="text-[28px] font-semibold text-ink tracking-tight leading-tight">Favoriler</h1>
+                    <p className="text-sm text-subtle font-medium">Kaydettiğin kartlar</p>
                 </div>
                 <button
                     onClick={() => navigate('/settings')}
-                    className="flex items-center justify-center w-10 h-10 rounded-full hover:bg-black/5 transition-colors group"
+                    className="flex items-center justify-center w-11 h-11 rounded-xl bg-surface-card hover:bg-primary-light transition-all duration-200 shadow-sm border border-border-subtle"
                 >
-                    <span className="material-symbols-outlined text-text-muted group-hover:text-primary-decks transition-colors">settings</span>
+                    <span className="material-symbols-outlined text-ink-light text-[22px]">settings</span>
                 </button>
             </header>
-            <div className="mt-6 mx-6 py-2 shrink-0">
-                <div className="relative border-b border-stone-300 focus-within:border-primary-fav transition-colors">
-                    <span className="material-symbols-outlined absolute left-0 top-1/2 -translate-y-1/2 text-stone-400 text-[20px]">search</span>
-                    <input className="w-full bg-transparent border-none py-2 pl-8 pr-4 text-ink placeholder:text-stone-400 focus:ring-0 font-noto-sans text-sm" placeholder="Ara..." />
+
+            {/* Search Bar */}
+            <div className="mx-6 mb-6">
+                <div className="flex w-full items-center rounded-xl bg-surface-card border border-border-subtle h-14 shadow-sm transition-all duration-200 focus-within:ring-2 focus-within:ring-primary/20 focus-within:border-primary/40">
+                    <div className="flex items-center justify-center pl-5 pr-3 text-subtle">
+                        <span className="material-symbols-outlined text-[22px]">search</span>
+                    </div>
+                    <input 
+                        className="w-full bg-transparent border-none py-2 pr-4 text-ink placeholder:text-subtle focus:ring-0 text-base" 
+                        placeholder="Favorilerde ara..." 
+                    />
                 </div>
             </div>
-            <main className="flex-1 overflow-y-auto no-scrollbar px-6 pt-6 pb-28 space-y-6">
-                {/* Dharma */}
-                <div className="group bg-white card-texture-fav rounded-[2px] p-5 shadow-card hover:shadow-card-hover transition-all duration-300 border border-stone-100 flex items-center gap-5 relative">
-                    <div className="absolute top-2 left-2 w-2 h-2 border-t border-l border-stone-200"></div>
-                    <div className="absolute bottom-2 right-2 w-2 h-2 border-b border-r border-stone-200"></div>
-                    <div className="flex-shrink-0 w-16 h-16 flex flex-col items-center justify-center border border-stone-100 rounded-sm bg-stone-50/50">
-                        <span className="text-2xl text-ink font-medium font-sanskrit">धर्म</span>
-                    </div>
-                    <div className="flex-1 min-w-0 flex flex-col justify-center">
-                        <h3 className="font-dancing text-2xl text-primary-fav mb-1">Dharma</h3>
-                        <p className="text-xs font-noto-sans text-ink-light tracking-wide uppercase">Görev / Yasa</p>
-                    </div>
-                    <div className="flex items-center gap-1">
-                        <button className="w-8 h-8 flex items-center justify-center text-primary-fav/40 hover:text-primary-fav transition-colors">
-                            <span className="material-symbols-outlined text-[20px] filled">favorite</span>
-                        </button>
-                        <button className="w-8 h-8 flex items-center justify-center text-stone-300 group-hover:text-primary-fav transition-colors">
-                            <span className="material-symbols-outlined">arrow_forward_ios</span>
-                        </button>
-                    </div>
-                </div>
 
-                {/* Santi */}
-                <div className="group bg-white card-texture-fav rounded-[2px] p-5 shadow-card hover:shadow-card-hover transition-all duration-300 border border-stone-100 flex items-center gap-5 relative">
-                    <div className="absolute top-2 left-2 w-2 h-2 border-t border-l border-stone-200"></div>
-                    <div className="absolute bottom-2 right-2 w-2 h-2 border-b border-r border-stone-200"></div>
-                    <div className="flex-shrink-0 w-16 h-16 flex flex-col items-center justify-center border border-stone-100 rounded-sm bg-stone-50/50">
-                        <span className="text-2xl text-ink font-medium font-sanskrit">शान्ति</span>
+            {/* Main Content */}
+            <main className="flex-1 overflow-y-auto no-scrollbar px-6 pb-32 space-y-4">
+                {FAVORITES.map((item) => (
+                    <div 
+                        key={item.id} 
+                        className="group bg-surface-card rounded-2xl p-5 shadow-card hover:shadow-card-hover transition-all duration-300 border border-border-subtle flex items-center gap-5 cursor-pointer hover:-translate-y-0.5"
+                    >
+                        {/* Sanskrit Character Box */}
+                        <div className="flex-shrink-0 w-16 h-16 flex flex-col items-center justify-center border border-border-subtle rounded-xl bg-paper-dark">
+                            <span className="text-2xl text-ink font-medium font-sanskrit">{item.sanskrit}</span>
+                        </div>
+                        
+                        {/* Text Content */}
+                        <div className="flex-1 min-w-0 flex flex-col justify-center">
+                            <h3 className="text-lg font-semibold text-primary mb-1">{item.title}</h3>
+                            <p className="text-sm text-subtle font-medium">{item.meaning}</p>
+                        </div>
+                        
+                        {/* Actions */}
+                        <div className="flex items-center gap-1">
+                            <button className="w-10 h-10 flex items-center justify-center text-primary hover:bg-primary-light rounded-xl transition-colors">
+                                <span className="material-symbols-outlined text-[22px] filled">favorite</span>
+                            </button>
+                            <button className="w-10 h-10 flex items-center justify-center text-subtle group-hover:text-primary transition-colors">
+                                <span className="material-symbols-outlined text-[20px]">arrow_forward_ios</span>
+                            </button>
+                        </div>
                     </div>
-                    <div className="flex-1 min-w-0 flex flex-col justify-center">
-                        <h3 className="font-dancing text-2xl text-primary-fav mb-1">Śānti</h3>
-                        <p className="text-xs font-noto-sans text-ink-light tracking-wide uppercase">Barış / Huzur</p>
-                    </div>
-                    <div className="flex items-center gap-1">
-                        <button className="w-8 h-8 flex items-center justify-center text-primary-fav/40 hover:text-primary-fav transition-colors">
-                            <span className="material-symbols-outlined text-[20px] filled">favorite</span>
-                        </button>
-                        <button className="w-8 h-8 flex items-center justify-center text-stone-300 group-hover:text-primary-fav transition-colors">
-                            <span className="material-symbols-outlined">arrow_forward_ios</span>
-                        </button>
-                    </div>
-                </div>
-
-                {/* Yoga */}
-                <div className="group bg-white card-texture-fav rounded-[2px] p-5 shadow-card hover:shadow-card-hover transition-all duration-300 border border-stone-100 flex items-center gap-5 relative">
-                    <div className="absolute top-2 left-2 w-2 h-2 border-t border-l border-stone-200"></div>
-                    <div className="absolute bottom-2 right-2 w-2 h-2 border-b border-r border-stone-200"></div>
-                    <div className="flex-shrink-0 w-16 h-16 flex flex-col items-center justify-center border border-stone-100 rounded-sm bg-stone-50/50">
-                        <span className="text-2xl text-ink font-medium font-sanskrit">योग</span>
-                    </div>
-                    <div className="flex-1 min-w-0 flex flex-col justify-center">
-                        <h3 className="font-dancing text-2xl text-primary-fav mb-1">Yoga</h3>
-                        <p className="text-xs font-noto-sans text-ink-light tracking-wide uppercase">Birlik</p>
-                    </div>
-                    <div className="flex items-center gap-1">
-                        <button className="w-8 h-8 flex items-center justify-center text-primary-fav/40 hover:text-primary-fav transition-colors">
-                            <span className="material-symbols-outlined text-[20px] filled">favorite</span>
-                        </button>
-                        <button className="w-8 h-8 flex items-center justify-center text-stone-300 group-hover:text-primary-fav transition-colors">
-                            <span className="material-symbols-outlined">arrow_forward_ios</span>
-                        </button>
-                    </div>
-                </div>
-
-                {/* Karma */}
-                <div className="group bg-white card-texture-fav rounded-[2px] p-5 shadow-card hover:shadow-card-hover transition-all duration-300 border border-stone-100 flex items-center gap-5 relative">
-                    <div className="absolute top-2 left-2 w-2 h-2 border-t border-l border-stone-200"></div>
-                    <div className="absolute bottom-2 right-2 w-2 h-2 border-b border-r border-stone-200"></div>
-                    <div className="flex-shrink-0 w-16 h-16 flex flex-col items-center justify-center border border-stone-100 rounded-sm bg-stone-50/50">
-                        <span className="text-2xl text-ink font-medium font-sanskrit">कर्म</span>
-                    </div>
-                    <div className="flex-1 min-w-0 flex flex-col justify-center">
-                        <h3 className="font-dancing text-2xl text-primary-fav mb-1">Karma</h3>
-                        <p className="text-xs font-noto-sans text-ink-light tracking-wide uppercase">Eylem</p>
-                    </div>
-                    <div className="flex items-center gap-1">
-                        <button className="w-8 h-8 flex items-center justify-center text-primary-fav/40 hover:text-primary-fav transition-colors">
-                            <span className="material-symbols-outlined text-[20px] filled">favorite</span>
-                        </button>
-                        <button className="w-8 h-8 flex items-center justify-center text-stone-300 group-hover:text-primary-fav transition-colors">
-                            <span className="material-symbols-outlined">arrow_forward_ios</span>
-                        </button>
-                    </div>
-                </div>
-
-                {/* Prema */}
-                <div className="group bg-white card-texture-fav rounded-[2px] p-5 shadow-card hover:shadow-card-hover transition-all duration-300 border border-stone-100 flex items-center gap-5 relative">
-                    <div className="absolute top-2 left-2 w-2 h-2 border-t border-l border-stone-200"></div>
-                    <div className="absolute bottom-2 right-2 w-2 h-2 border-b border-r border-stone-200"></div>
-                    <div className="flex-shrink-0 w-16 h-16 flex flex-col items-center justify-center border border-stone-100 rounded-sm bg-stone-50/50">
-                        <span className="text-2xl text-ink font-medium font-sanskrit">प्रेम</span>
-                    </div>
-                    <div className="flex-1 min-w-0 flex flex-col justify-center">
-                        <h3 className="font-dancing text-2xl text-primary-fav mb-1">Prema</h3>
-                        <p className="text-xs font-noto-sans text-ink-light tracking-wide uppercase">İlahi Aşk</p>
-                    </div>
-                    <div className="flex items-center gap-1">
-                        <button className="w-8 h-8 flex items-center justify-center text-primary-fav/40 hover:text-primary-fav transition-colors">
-                            <span className="material-symbols-outlined text-[20px] filled">favorite</span>
-                        </button>
-                        <button className="w-8 h-8 flex items-center justify-center text-stone-300 group-hover:text-primary-fav transition-colors">
-                            <span className="material-symbols-outlined">arrow_forward_ios</span>
-                        </button>
-                    </div>
-                </div>
+                ))}
             </main>
-            <nav className="absolute bottom-0 w-full bg-texture-fav/90 backdrop-blur-md border-t border-stone-200/60 px-8 py-2 pb-6 flex items-center justify-between z-20">
+
+            {/* Bottom Navigation */}
+            <nav className="absolute bottom-0 left-0 right-0 mx-4 mb-4 bg-surface-card/95 backdrop-blur-xl rounded-2xl border border-border-subtle shadow-float px-6 py-3 flex items-center justify-around z-20">
                 <button
                     onClick={() => navigate('/decks')}
-                    className="flex flex-col items-center justify-center gap-1 text-stone-400 hover:text-primary-decks transition-colors w-16 group">
+                    className="flex flex-col items-center justify-center gap-1.5 text-subtle hover:text-primary transition-colors w-16 py-1 group"
+                >
                     <span className="material-symbols-outlined text-[26px] group-hover:-translate-y-0.5 transition-transform">grid_view</span>
-                    <span className="text-[10px] font-medium tracking-wide mt-0.5">DESTELER</span>
+                    <span className="text-[11px] font-medium tracking-wide">DESTELER</span>
                 </button>
-                <button
-                    className="flex flex-col items-center justify-center gap-1 text-primary-fav w-16">
+                <button className="flex flex-col items-center justify-center gap-1.5 text-primary w-16 py-1">
                     <span className="material-symbols-outlined text-[26px] filled">favorite</span>
-                    <span className="text-[10px] font-bold tracking-wide mt-0.5">FAVORİLER</span>
+                    <span className="text-[11px] font-semibold tracking-wide">FAVORİLER</span>
                 </button>
                 <button
                     onClick={() => navigate('/statistics')}
-                    className="flex flex-col items-center justify-center gap-1 text-stone-400 hover:text-primary-decks transition-colors w-16 group">
+                    className="flex flex-col items-center justify-center gap-1.5 text-subtle hover:text-primary transition-colors w-16 py-1 group"
+                >
                     <span className="material-symbols-outlined text-[26px] group-hover:-translate-y-0.5 transition-transform">bar_chart</span>
-                    <span className="text-[10px] font-medium tracking-wide mt-0.5">İSTATİSTİK</span>
+                    <span className="text-[11px] font-medium tracking-wide">İSTATİSTİK</span>
                 </button>
             </nav>
-
         </MobileLayout>
     );
 };
