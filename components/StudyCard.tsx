@@ -35,9 +35,7 @@ export const StudyCard: React.FC<StudyCardProps> = ({ card, isFlipped, onFlip, t
 
           {/* Content */}
           <div className="flex-1 flex flex-col items-center p-6 relative">
-            <span className="absolute top-6 right-6 text-[10px] font-semibold tracking-wider text-ink uppercase bg-white/30 px-3 py-1.5 rounded-lg backdrop-blur-sm">
-              {card.type}
-            </span>
+
 
             {/* Image Circle */}
             <div className="flex-1 w-full flex items-center justify-center opacity-90 mt-6">
@@ -92,6 +90,11 @@ export const StudyCard: React.FC<StudyCardProps> = ({ card, isFlipped, onFlip, t
             <p className="text-2xl font-serif text-ink leading-relaxed font-medium">
               {card.meaning}
             </p>
+            {card.description && (
+              <p className="text-sm text-ink/70 mt-4 leading-relaxed max-w-[90%] font-medium font-sans">
+                {card.description}
+              </p>
+            )}
           </div>
 
           <div className="h-12 w-full flex items-center justify-center bg-black/10 border-t border-black/5">

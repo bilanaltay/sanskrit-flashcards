@@ -11,10 +11,11 @@ const Decks: React.FC = () => {
 
   useEffect(() => {
     const fetchDecks = async () => {
+      setLoading(true);
       try {
         const { data, error } = await supabase
           .from('decks')
-          .select('*')
+          .select('*, cards(id, image_url, sanskrit, transliteration)') // optimized select
           .order('id');
 
         if (error) {
@@ -24,7 +25,19 @@ const Decks: React.FC = () => {
 
         if (data) {
           const mergedDecks = data.map((dbDeck: any) => {
-            const localDeck = DECKS[dbDeck.id];
+            // Map DB cards to Card interface format (minimal for count/display)
+            const dbCards = (dbDeck.cards || []).map((c: any) => ({
+               id: c.id,
+               sanskrit: c.sanskrit,
+               transliteration: c.transliteration,
+               imageUrl: c.image_url,
+               meaning: '', // Not needed for deck list
+               type: 'Neutral'
+            }));
+
+            // Use DB cards if available, otherwise fallback to local
+            const finalCards = dbCards.length > 0 ? dbCards : (DECKS[dbDeck.id]?.cards || []);
+
             return {
               id: dbDeck.id,
               title: dbDeck.title,
@@ -32,7 +45,7 @@ const Decks: React.FC = () => {
               version: dbDeck.version,
               themeColor: dbDeck.theme_color,
               defaultLang: dbDeck.default_lang,
-              cards: localDeck ? localDeck.cards : [],
+              cards: finalCards,
             };
           });
           setDecks(mergedDecks);

@@ -1,9 +1,35 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { MobileLayout } from '../components/MobileLayout';
+import { signOut, supabase } from '../utils/supabaseClient';
 
 const Settings: React.FC = () => {
     const navigate = useNavigate();
+    const [name, setName] = useState('Yükleniyor...');
+    const [email, setEmail] = useState('');
+    const [avatarUrl, setAvatarUrl] = useState('');
+    const [appLang, setAppLang] = useState(localStorage.getItem('app_language') || 'tr');
+
+    useEffect(() => {
+        const getUser = async () => {
+            const { data: { user } } = await supabase.auth.getUser();
+            if (user) {
+                const metadata = user.user_metadata;
+                // Prioritize first_name + last_name (Magic Link), fall back to full_name (Google), then email
+                const fullName = metadata?.first_name 
+                    ? `${metadata.first_name} ${metadata.last_name || ''}`.trim()
+                    : metadata?.full_name || user.email?.split('@')[0] || 'Kullanıcı';
+                
+                setName(fullName);
+                setEmail(user.email || '');
+                setAvatarUrl(metadata?.avatar_url || '');
+            } else {
+                setName('Misafir');
+                setEmail('');
+            }
+        };
+        getUser();
+    }, []);
 
     return (
         <MobileLayout className="bg-paper-dark font-sans text-ink overflow-y-auto no-scrollbar relative">
@@ -24,15 +50,17 @@ const Settings: React.FC = () => {
                 <div className="mb-10 relative rounded-2xl bg-surface-card shadow-card border border-border-subtle p-8 flex flex-col items-center text-center">
                     <div className="relative mb-4">
                         <div 
-                            className="h-24 w-24 rounded-full bg-cover bg-center border-2 border-border-subtle shadow-sm" 
-                            style={{ backgroundImage: 'url("https://lh3.googleusercontent.com/aida-public/AB6AXuBJHHHU0zYLc2GsL45cHTdKmsM4HZfe6rQPaZf9eUGSW4-k2idRim9cIfWeqgiYsUutxKnX-vrslD6IYlavLAlzEsC10Z9f7pQ6jJ_x_NZjndfNogXCAzGo1Yhg2GPS4KHvqijP_-RluhHW7mZjuhru3FJNcvbylIWSYwylanNwIkHdcuf5CSfeH4ry-CVMGtvSLudopaf04-qa4pgWppX0VxlVp3Ax8d5usaeJSZFP-eMwuI4JTG1kuCWOohFzmwAjY-BTt4_sgTk")' }}
-                        />
+                            className="h-24 w-24 rounded-full bg-cover bg-center border-2 border-border-subtle shadow-sm flex items-center justify-center bg-paper-dark text-primary font-bold text-3xl" 
+                            style={avatarUrl ? { backgroundImage: `url("${avatarUrl}")` } : {}}
+                        >
+                            {!avatarUrl && name.charAt(0).toUpperCase()}
+                        </div>
                         <button className="absolute bottom-0 right-0 bg-primary text-white rounded-full p-2 shadow-sm hover:bg-primary-intro-dark transition-all">
                             <span className="material-symbols-outlined text-[16px] block">edit</span>
                         </button>
                     </div>
-                    <h2 className="text-2xl font-semibold text-ink">Ali Yılmaz</h2>
-                    <p className="text-primary text-base font-medium mt-1">Sanskritçe Başlangıç</p>
+                    <h2 className="text-2xl font-semibold text-ink">{name}</h2>
+                    <p className="text-subtle text-sm font-medium mt-1">{email}</p>
                     <div className="mt-5 flex items-center justify-center gap-2 px-4 py-2 bg-primary-light rounded-full">
                         <span className="material-symbols-outlined text-primary text-[18px]">local_fire_department</span>
                         <span className="text-ink text-sm font-semibold">12 Günlük Seri</span>
@@ -109,16 +137,23 @@ const Settings: React.FC = () => {
                                 <label className="toggle-label block overflow-hidden h-6 rounded-full bg-stone-200 cursor-pointer transition-colors duration-300" htmlFor="toggle-notif"></label>
                             </div>
                         </div>
-                        <button className="flex items-center justify-between p-5 w-full hover:bg-primary-light/50 transition-colors group">
+                  <button 
+                            onClick={() => {
+                                const newLang = appLang === 'tr' ? 'en' : 'tr';
+                                setAppLang(newLang);
+                                localStorage.setItem('app_language', newLang);
+                            }}
+                            className="flex items-center justify-between p-5 w-full hover:bg-primary-light/50 transition-colors group"
+                        >
                             <div className="flex items-center gap-4">
                                 <div className="w-10 h-10 rounded-xl bg-paper-dark flex items-center justify-center">
                                     <span className="material-symbols-outlined text-[20px] text-ink-light">language</span>
                                 </div>
-                                <span className="text-base font-medium text-ink">Dil</span>
+                                <span className="text-base font-medium text-ink">Dil / Language</span>
                             </div>
                             <div className="flex items-center gap-2">
-                                <span className="text-sm font-medium text-subtle">Türkçe</span>
-                                <span className="material-symbols-outlined text-[18px] text-subtle">chevron_right</span>
+                                <span className="text-sm font-medium text-subtle uppercase">{appLang === 'tr' ? 'Türkçe' : 'English'}</span>
+                                <span className="material-symbols-outlined text-[18px] text-subtle">swap_horiz</span>
                             </div>
                         </button>
                     </div>
@@ -138,14 +173,24 @@ const Settings: React.FC = () => {
                             <span className="material-symbols-outlined text-[18px] text-subtle">chevron_right</span>
                         </button>
                         <button
-                            onClick={() => navigate('/')}
-                            className="flex items-center justify-between p-5 w-full hover:bg-red-50 transition-colors group"
+                            onClick={async () => {
+                                try {
+                                    await signOut();
+                                    navigate('/auth', { replace: true });
+                                } catch (error) {
+                                    console.error("Logout failed:", error);
+                                }
+                            }}
+                            className="flex items-center justify-center p-5 w-full hover:bg-red-50 transition-colors group"
                         >
-                            <div className="flex items-center gap-4">
-                                <div className="w-10 h-10 rounded-xl bg-red-50 flex items-center justify-center">
+                            <div className="flex items-center gap-4 w-full">
+                                <div className="w-10 h-10 rounded-xl bg-red-50 flex items-center justify-center shrink-0">
                                     <span className="material-symbols-outlined text-[20px] text-red-500">logout</span>
                                 </div>
                                 <span className="text-base font-medium text-red-500">Çıkış Yap</span>
+                                <div className="ml-auto">
+                                    <span className="material-symbols-outlined text-[18px] text-red-300 group-hover:text-red-500 transition-colors">chevron_right</span>
+                                </div>
                             </div>
                         </button>
                     </div>

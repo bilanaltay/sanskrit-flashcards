@@ -5,6 +5,7 @@ export interface Card {
   meaning: string;
   type: string; // e.g., "Feminine", "Masculine"
   imageUrl: string;
+  description?: string;
 }
 
 export interface Deck {
